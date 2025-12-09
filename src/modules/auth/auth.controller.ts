@@ -9,11 +9,11 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
-import { CreateUserDto } from '../../dto/create-user.dto';
+import { CreateUserDto } from '../../dto/user/create-user.dto';
 import { AuthService } from '../auth/auth.service';
 import { JwtAuthGuard } from '../guard/jwt.guard';
 import { Public } from 'src/app/decorator/is-public.decorator';
-import { LoginDto } from 'src/dto/login.dto';
+import { LoginDto } from 'src/dto/user/login.dto';
 
 @Controller('auth')
 @ApiTags('Auth')

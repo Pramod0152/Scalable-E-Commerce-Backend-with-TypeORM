@@ -7,22 +7,28 @@ import {
   Request,
   UseGuards,
 } from '@nestjs/common';
-import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiExtraModels, ApiTags } from '@nestjs/swagger';
 import { UserService } from '../../bll/user.service';
 import { JwtAuthGuard } from '../guard/jwt.guard';
-import { UpdateUserDto } from 'src/dto/update-user.dto';
+import { UpdateUserDto } from 'src/dto/user/update-user.dto';
+import { GenericResponseDto } from 'src/dto/generic-response.dto';
+import { ResponseHandlerService } from 'src/app/common/response-handler.service';
 
-@Controller('users')
+@Controller('user')
 @ApiTags('Users')
 @ApiBearerAuth()
+@ApiExtraModels(GenericResponseDto)
 @UseGuards(JwtAuthGuard)
 export class UserController {
-  constructor(private readonly userService: UserService) {}
+  constructor(
+    private readonly userService: UserService,
+    private readonly responseHandler: ResponseHandlerService,
+  ) {}
 
-  @Get('/profile')
+  @Get('/')
   async getUsers(@Request() req: any) {
     const users = await this.userService.getUser(req.user.id);
-    return users;
+    return await this.responseHandler.handleResponse(users);
   }
 
   @Patch('/')
