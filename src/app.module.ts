@@ -6,6 +6,7 @@ import { FrontEndModule } from './modules/frontend/frontend.modules';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { JwtModule } from '@nestjs/jwt';
 import { JwtStrategy } from './strategies/jwt.strategy';
+import { ResponseModules } from './app/common/response.modules';
 
 @Module({
   imports: [
@@ -31,6 +32,7 @@ import { JwtStrategy } from './strategies/jwt.strategy';
       inject: [ConfigService],
     }),
     ServiceModule,
+    ResponseModules,
     DalModules,
     FrontEndModule,
   ],
