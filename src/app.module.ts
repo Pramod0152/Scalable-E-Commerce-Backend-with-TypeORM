@@ -7,6 +7,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { JwtModule } from '@nestjs/jwt';
 import { JwtStrategy } from './strategies/jwt.strategy';
 import { ResponseModules } from './app/common/response.modules';
+import { LoggerModule } from './app/logger/logger.modules';
 
 @Module({
   imports: [
@@ -35,6 +36,7 @@ import { ResponseModules } from './app/common/response.modules';
     ResponseModules,
     DalModules,
     FrontEndModule,
+    LoggerModule,
   ],
   controllers: [],
   providers: [JwtStrategy],
