@@ -29,5 +29,4 @@ export class UserService {
     }
     return this.userDataService.deleteUser(id);
   }
-  
 }
